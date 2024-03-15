@@ -9,11 +9,11 @@ class Gene:
     #initialize function to create chromosomes with len 24 randomly
     def initialize():
         chrom = ''
-        for i in range (4): # کروموزوم رو 4 تایی تعریف کردم که راحت تر خروجی بگیرم. طبق صورت سوال اینجا باید 24 تایی باشه
+        for i in range (24):
             chrom += str(random.randint(0, 1))
         return chrom
     
-    #fitness function to evalute similarity between target and sample chromosomes and return the similarity percentage
+    #fitness function to evaluate similarity between target and sample chromosomes and return the similarity percentage
     def fitness(target, sample):
         mismatch = 0
         for i in range(len(sample)):
@@ -21,7 +21,7 @@ class Gene:
                 mismatch += 1
         return ((len(sample) - mismatch) / len(sample)) * 100
     
-    #population functoin to generate a population of 100 chromosomes and return as a dictionary : {fitness percentage : chromosome}
+    #population function to generate a population of 100 chromosomes and return as a dictionary: {fitness percentage: chromosome}
     def population(self):
         gene_source = {}
         for i in range(10):
@@ -30,7 +30,7 @@ class Gene:
             gene_source[key] = value
         return gene_source
 
-    #crossover function that use half of each parent chromosome and create the offspring
+    #crossover function that uses half of each parent chromosome and creates the offspring
     def crossover(self, parent1, parent2):
         offspring1 = parent1[0:len(parent1)//2] + parent2[len(parent2)//2:]
         offspring2 = parent2[0:len(parent2)//2] + parent1[len(parent1)//2:]
@@ -39,7 +39,7 @@ class Gene:
         else:
             return offspring2
     
-    #mutation function to apply random mutations in parents chromosomes and create the offspring 
+    #mutation function to apply random mutations in parents' chromosomes and create the offspring 
     def mutation(self, parent):
         indx = random.randint(0, len(parent) - 1)
         mut_parent = list(parent)
